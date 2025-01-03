@@ -11,8 +11,17 @@
     --button-color: #1e88e5;
     --button-text-color: #000000;
   }
+
+  .toggle-container {
+    font-size: 14px;
+    color: black;
+  }
   
   body {
+    background-image: url(https://cdn.dealeraccelerate.com/stlouis/1/1595/50685/1920x1440/1969-dodge-charger);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     background-color: var(--background-color);
     color: var(--text-color);
     font-family: Arial, sans-serif;
@@ -29,7 +38,7 @@
   
   label {
     display: block;
-    margin: 10px 0;
+    margin: px 0;
   }
   
   input {
