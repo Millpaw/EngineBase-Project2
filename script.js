@@ -28,7 +28,7 @@ const carDatabase = [
   
   document.body.innerHTML = `
     <div>
-      <h1>Car Search Engine</h1>
+      <h1>Your #1 Car Information Search <i>Engine</i></h1>
       <label>Year: <input type="number" id="yearInput"></label>
       <label>Make: <input type="text" id="makeInput"></label>
       <label>Model: <input type="text" id="modelInput"></label>
