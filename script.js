@@ -1,6 +1,5 @@
-// JavaScript code for a simple search engine for car year, make, and model
 
-// Sample data for cars
+
 const carDatabase = [
     { year: 2020, make: "Toyota", model: "Camry" },
     { year: 2021, make: "Honda", model: "Civic" },
@@ -9,7 +8,7 @@ const carDatabase = [
     { year: 2020, make: "Chevrolet", model: "Malibu" },
   ];
   
-  // Function to search for cars based on year, make, and model
+ 
   function searchCars(year, make, model) {
     return carDatabase.filter((car) => {
       const yearMatch = year ? car.year === year : true;
@@ -19,15 +18,14 @@ const carDatabase = [
     });
   }
   
-  // Example usage
-  const year = 2020; // Set to null or undefined to ignore year in search
-  const make = "Toyota"; // Set to null or undefined to ignore make in search
-  const model = "Camry"; // Set to null or undefined to ignore model in search
+  const year = 2020; 
+  const make = "Toyota"; 
+  const model = "Camry"; 
   
   const results = searchCars(year, make, model);
   console.log("Search Results:", results);
   
-  // HTML structure for user input and displaying results
+  
   document.body.innerHTML = `
     <div>
       <h1>Car Search Engine</h1>
@@ -37,9 +35,10 @@ const carDatabase = [
       <button onclick="handleSearch()">Search</button>
       <div id="results"></div>
     </div>
+    
   `;
   
-  // Function to handle search when button is clicked
+  
   function handleSearch() {
     const yearInput = document.getElementById("yearInput").value;
     const makeInput = document.getElementById("makeInput").value;
@@ -57,3 +56,17 @@ const carDatabase = [
       : "<p>No cars found.</p>";
   }
   
+  document.body.innerHTML += `
+  <div class="toggle-container">
+    <label>
+        <input type="checkbox" id="darkModeToggle"> Enable Dark Model
+        </input>
+    </label>
+  </div>
+  `;
+
+  document.getElementById("darkModeToggle").addEventListener("change", (event) => 
+{if (event.target.checked) {
+    document.body.classList.remove("dark-mode");
+}
+});

@@ -1,0 +1,59 @@
+:root {
+    --background-color: #ffffff;
+    --text-color: #000000;
+    --button-color: #007bff;
+    --button-text-color: #ffffff;
+  }
+  
+  body.dark-mode {
+    --background-color: #121212;
+    --text-color: #ffffff;
+    --button-color: #1e88e5;
+    --button-text-color: #000000;
+  }
+  
+  body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  h1 {
+    margin: 20px 0;
+  }
+  
+  label {
+    display: block;
+    margin: 10px 0;
+  }
+  
+  input {
+    margin-left: 10px;
+  }
+  
+  button {
+    background-color: var(--button-color);
+    color: var(--button-text-color);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    opacity: 0.9;
+  }
+  
+  #results {
+    margin-top: 20px;
+  }
+  
+  .toggle-container {
+    margin-top: 20px;
+  }
+  
