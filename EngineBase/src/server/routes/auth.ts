@@ -1,4 +1,5 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
+import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from '../models/User';
@@ -31,10 +32,11 @@ router.post('/register', async (req: Request, res: Response) => {
       user: {
         id: newUser.id,
         email: newUser.email,
-        name: newUser.name,
+        name: newUser.username,
       },
     });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: 'Registration failed' });
   }
 });
@@ -50,20 +52,24 @@ router.post('/login', async (req: Request, res: Response) => {
   try {
     const user = await User.findOne({ where: { email } });
     if (!user) {
-      return res.status(400).json({ error: 'Invalid email or password' });
+      return res.status(400).json({ error: 'Invalid email' });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ error: 'Invalid email or password' });
+      return res.status(400).json({ error: 'Invalid password' });
     }
 
     const token = jwt.sign({ userId: user.id, email: user.email }, 'your_jwt_secret', {
       expiresIn: '1h',
     });
 
-    res.json({ message: 'Login successful', token });
+    res.status(200).json({
+      message: 'Login successful',
+      token,
+    });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: 'Login failed' });
   }
 });

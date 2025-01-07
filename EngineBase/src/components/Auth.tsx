@@ -14,13 +14,35 @@ const Auth = () => {
       console.log(response.data);
       if (isLogin) localStorage.setItem('token', response.data.token);
     } catch (error) {
-      console.error('Authentication failed:', error.response?.data?.error || error.message);
+      if (axios.isAxiosError(error)) {
+        console.error('Authentication failed:', error.response?.data?.error || error.message);
+      } else {
+        console.error('Authentication failed:');
+      }
     }
   };
 
   return (
     <div>
-      
+      <h1>{isLogin ? 'Login' : 'Register'}</h1>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit">{isLogin ? 'Login' : 'Register'}</button>
+        <button type="button" onClick={() => setIsLogin(!isLogin)}>
+          {isLogin ? 'Create an account' : 'Login with existing account'}
+        </button>
+      </form>
     </div>
   );
 };
