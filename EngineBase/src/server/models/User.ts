@@ -1,29 +1,37 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../../config/database';
 
-interface UserAttributes {
-  id: number;
-  username: string;
-  password: string;
+class User extends Model {
+  public id!: number;
+  public email!: string;
+  public password!: string;
+  public username?: string; // Optional field
+  public readonly createdAt!: Date;
+  public readonly updatedAt!: Date;
 }
-
-class User extends Model<UserAttributes> {}
 
 User.init(
   {
     id: {
       type: DataTypes.INTEGER,
-      primaryKey: true,
       autoIncrement: true,
+      primaryKey: true,
     },
-    username: {
+    email: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
+      validate: {
+        isEmail: true,
+      },
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
   },
   {
