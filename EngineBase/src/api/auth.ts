@@ -12,7 +12,7 @@ export const registerUser = async (email: string, password: string, name?: strin
     });
     return response.data;
   } catch (error: any) {
-    throw new Error(error.response?.data?.error || 'Registration failed');
+    throw new Error(err.response?.data?.error || 'Registration failed');
   }
 };
 

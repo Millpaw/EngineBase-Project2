@@ -25,7 +25,7 @@ export const authenticateJWT = (req: AuthenticatedRequest, res: Response, next: 
     const decoded = jwt.verify(token, JWT_SECRET);
     req.user = decoded;
     next(); // Proceed to the next middleware/route handler
-  } catch (error) {
+  } catch {
     return res.status(403).json({ error: 'Forbidden: Invalid or expired token' });
   }
 };
