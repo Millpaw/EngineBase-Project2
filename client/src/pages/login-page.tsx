@@ -1,32 +1,28 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useAuth } from "../contexts/AuthContext";
 
 const LoginPage: React.FC = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
+  const { login } = useAuth();
   const navigate = useNavigate();
 
-  // Handle login submission
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
 
     try {
-      // Make API request to the backend
       const response = await axios.post("http://localhost:5000/auth/login", {
         username,
         password,
       });
 
       const { token } = response.data;
-
-      // Store token in localStorage
-      localStorage.setItem("authToken", token);
-
-      // Redirect to home page or dashboard
-      navigate("/");
+      login(token); // Call the login function to set authentication
+      navigate("/"); // Redirect to the homepage
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");
     }
@@ -74,9 +70,6 @@ const LoginPage: React.FC = () => {
               </div>
             </div>
           </form>
-          <p className="has-text-centered">
-            Don’t have an account? <a href="/register">Register here</a>
-          </p>
         </div>
       </div>
     </div>

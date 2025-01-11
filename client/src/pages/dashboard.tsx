@@ -1,12 +1,14 @@
-// build profile page with saved cars feature
-
 import React from "react";
 
-export default function Profile() {
+const Dashboard: React.FC = () => {
   return (
-    <div>
-      <h1>Profile</h1>
-      <p>Welcome to your profile page</p>
+    <div className="container">
+      <div className="section">
+        <h2 className="title is-3 has-text-centered">User Dashboard</h2>
+        <p className="has-text-centered">Welcome to your dashboard!</p>
+      </div>
     </div>
   );
-}
+};
+
+export default Dashboard;

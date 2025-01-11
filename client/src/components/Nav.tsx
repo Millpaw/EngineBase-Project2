@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 const Navbar: React.FC = () => {
+  const { isAuthenticated, logout } = useAuth();
+
   return (
     <nav className="navbar is-primary" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
@@ -31,12 +34,25 @@ const Navbar: React.FC = () => {
 
       <div id="navbarMenu" className="navbar-menu">
         <div className="navbar-end">
-          <Link to="/login" className="navbar-item">
-            <button className="button is-light">Login</button>
-          </Link>
-          <Link to="/register" className="navbar-item">
-            <button className="button is-light">Register</button>
-          </Link>
+          {isAuthenticated ? (
+            <>
+              <Link to="/dashboard" className="navbar-item">
+                <button className="button is-light">Dashboard</button>
+              </Link>
+              <button className="button is-light navbar-item" onClick={logout}>
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/login" className="navbar-item">
+                <button className="button is-light">Login</button>
+              </Link>
+              <Link to="/register" className="navbar-item">
+                <button className="button is-light">Register</button>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </nav>
