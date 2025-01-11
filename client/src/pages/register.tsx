@@ -36,57 +36,66 @@ const RegisterPage: React.FC = () => {
   };
 
   return (
-    // TODO: ADD BULMA CSS TO MAKE IT LOOK BETTER
-    <div style={{ maxWidth: "400px", margin: "50px auto", textAlign: "center" }}>
-      <h2>Register</h2>
-      <form onSubmit={handleRegister}>
-        <div style={{ marginBottom: "10px" }}>
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            style={{ width: "100%", padding: "8px" }}
-          />
+    <div className="container">
+      <div className="section">
+        <div className="column is-half is-offset-one-quarter">
+          <h2 className="title is-3 has-text-centered">Register</h2>
+          <form onSubmit={handleRegister}>
+            <div className="field">
+              <label className="label">Username</label>
+              <div className="control">
+                <input
+                  className="input"
+                  type="text"
+                  placeholder="Enter your username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </div>
+            </div>
+
+            <div className="field">
+              <label className="label">Password</label>
+              <div className="control">
+                <input
+                  className="input"
+                  type="password"
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+            </div>
+
+            <div className="field">
+              <label className="label">Confirm Password</label>
+              <div className="control">
+                <input
+                  className="input"
+                  type="password"
+                  placeholder="Confirm your password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+              </div>
+            </div>
+
+            {error && <p className="has-text-danger">{error}</p>}
+            {success && <p className="has-text-success">{success}</p>}
+
+            <div className="field">
+              <div className="control">
+                <button className="button is-primary is-fullwidth" type="submit">
+                  Register
+                </button>
+              </div>
+            </div>
+          </form>
+          <p className="has-text-centered">
+            Already have an account? <a href="/login">Login here</a>
+          </p>
         </div>
-        <div style={{ marginBottom: "10px" }}>
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            style={{ width: "100%", padding: "8px" }}
-          />
-        </div>
-        <div style={{ marginBottom: "10px" }}>
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            style={{ width: "100%", padding: "8px" }}
-          />
-        </div>
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        {success && <p style={{ color: "green" }}>{success}</p>}
-        <button
-          type="submit"
-          style={{
-            width: "100%",
-            padding: "10px",
-            backgroundColor: "#007BFF",
-            color: "#fff",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer",
-          }}
-        >
-          Register
-        </button>
-      </form>
-      <p>
-        Already have an account? <a href="/login">Login here</a>
-      </p>
+      </div>
     </div>
   );
 };

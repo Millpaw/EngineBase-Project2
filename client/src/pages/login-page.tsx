@@ -33,47 +33,52 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    // TODO: ADD BULMA CSS TO MAKE IT LOOK BETTER
-    <div style={{ maxWidth: "400px", margin: "50px auto", textAlign: "center" }}>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <div style={{ marginBottom: "10px" }}>
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            style={{ width: "100%", padding: "8px" }}
-          />
+    <div className="container">
+      <div className="section">
+        <div className="column is-half is-offset-one-quarter">
+          <h2 className="title is-3 has-text-centered">Login</h2>
+          <form onSubmit={handleLogin}>
+            <div className="field">
+              <label className="label">Username</label>
+              <div className="control">
+                <input
+                  className="input"
+                  type="text"
+                  placeholder="Enter your username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </div>
+            </div>
+
+            <div className="field">
+              <label className="label">Password</label>
+              <div className="control">
+                <input
+                  className="input"
+                  type="password"
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+            </div>
+
+            {error && <p className="has-text-danger">{error}</p>}
+
+            <div className="field">
+              <div className="control">
+                <button className="button is-primary is-fullwidth" type="submit">
+                  Login
+                </button>
+              </div>
+            </div>
+          </form>
+          <p className="has-text-centered">
+            Don’t have an account? <a href="/register">Register here</a>
+          </p>
         </div>
-        <div style={{ marginBottom: "10px" }}>
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            style={{ width: "100%", padding: "8px" }}
-          />
-        </div>
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        <button
-          type="submit"
-          style={{
-            width: "100%",
-            padding: "10px",
-            backgroundColor: "#007BFF",
-            color: "#fff",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer",
-          }}
-        >
-          Login
-        </button>
-      </form>
-      <p>
-        Don’t have an account? <a href="/register">Register here</a>
-      </p>
+      </div>
     </div>
   );
 };
