@@ -1,11 +1,8 @@
 import express from 'express';
-import authRoutes from '../../server/src/routes/auth';
 import sequelize from '../../server/src/config/database';
 
 const app = express();
 app.use(express.json());
-
-app.use('/api/auth', authRoutes);
 
 sequelize.authenticate()
   .then(() => {

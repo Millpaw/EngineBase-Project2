@@ -1,14 +1,19 @@
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
+import React from "react";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import LoginPage from "./pages/login-page";
+import DashboardPage from "./pages/dashboard";
+import PrivateRoute from "./components/PrivateRoute";
 
-export default function App() {
+const App: React.FC = () => {
   return (
-    <header>
-      <SignedOut>
-        <SignInButton />
-      </SignedOut>
-      <SignedIn>
-        <UserButton />
-      </SignedIn>
-    </header>
+    <Router>
+      <Routes>
+        <PrivateRoute path="/dashboard" element={<DashboardPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="*" element={<Navigate to="/login" />} />
+      </Routes>
+    </Router>
   );
-}
+};
+
+export default App;
