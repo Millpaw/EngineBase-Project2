@@ -1,6 +1,6 @@
 import express from 'express';
-import authRoutes from './routes/auth';
-import sequelize from '../config/database';
+import authRoutes from '../../server/src/routes/auth';
+import sequelize from '../../server/src/config/database';
 
 const app = express();
 app.use(express.json());
