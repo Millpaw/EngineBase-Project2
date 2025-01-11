@@ -1,5 +1,3 @@
-// File: src/pages/LoginPage.tsx
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -35,6 +33,7 @@ const LoginPage: React.FC = () => {
   };
 
   return (
+    // TODO: ADD BULMA CSS TO MAKE IT LOOK BETTER
     <div style={{ maxWidth: "400px", margin: "50px auto", textAlign: "center" }}>
       <h2>Login</h2>
       <form onSubmit={handleLogin}>

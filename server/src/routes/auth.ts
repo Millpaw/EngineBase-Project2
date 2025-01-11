@@ -1,6 +1,7 @@
 import express from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import User from "../models/User";
 
 const router = express.Router();
 
@@ -32,17 +33,30 @@ router.post("/register", async (req: express.Request, res: express.Response): Pr
       return;
     }
     
-    const existingUser = users.find((u) => u.username === username);
-    if (existingUser) {
-      res.status(400).json({ message: "Username already exists" });
+    try {
+      // Check if username already exists
+      const existingUser = await User.findOne({ where: { username } });
+      if (existingUser) {
+        res.status(400).json({ message: "Username already exists" });
+        // TODO: ADD REDIRECT TO LOGIN PAGE ON ERROR AFTER 5 SECONDS
+      }
+  
+      // Hash the password
+      const hashedPassword = await bcrypt.hash(password, 10);
+  
+      // Save user to database
+      const newUser = await User.create({
+        username,
+        password: hashedPassword,
+        id: 0,
+      });
+  
+      res.status(201).json({ message: "User registered successfully", user: newUser });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Internal server error" });
+      // TODO: ADD REDIRECT TO LOGIN PAGE ON ERROR AFTER 5 SECONDS
     }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-  
-    // Save the user (replace this logic with database insertion)
-    users.push({ username, password: hashedPassword });
-  
-    res.status(201).json({ message: "User registered successfully" });
 });
   
 
