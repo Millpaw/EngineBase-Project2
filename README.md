@@ -5,6 +5,7 @@ Table of Contents
 
 - [Description](#description)
 - [Installation](#installation)
+- [Technologies Used](#technologiesused)
 - [Usage](#usage)
 - [User Story](#userstory)
 - [Acceptance Criteria](#acceptancecriteria)
@@ -29,6 +30,20 @@ Navigate to the project folder:
 Install the dependencies:
 
     npm install
+
+## Technologies Used
+
+The technologies used are the following:
+
+```bash
+Node.js
+Express.js
+React
+PostgreSQL
+Sequelize ORM
+API Keys
+```
+
 
 ## Usage
 
